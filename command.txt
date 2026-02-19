@@ -1,0 +1,96 @@
+edited c:\Users\Owner\Desktop\OneDrive\Python\AI\DQ_CheckOpenAI\pyproject.toml
+
+[project.scripts]
+dq-demo = "pipeline.run_demo:main"
+dq-ui = "ui.app:main"
+
+[tool.setuptools]
+
+
+
+Ran cmd /c ".venv\Scripts\python -m pip install -r requirements.txt"
+
+
+Ran python -m pip show dq-health-control-tower for 1s
+
+
+Ran python -m pip install -r requirements.txt for 13s
+
+
+Ran python -m pip show dq_health_control_tower
+
+
+Ran dq-ui --help for 4s
+
+
+Ran dq-demo --help for 12s
+
+
+
+ ######### old version
+Use these in **Windows Command Prompt (`cmd.exe`)** from repo root:
+
+1. Create and activate venv
+```cmd
+python -m venv .venv
+.venv\Scripts\activate.bat
+pip install -e .[dev]
+```
+
+2. Prepare synthetic data + run DQ pipeline
+```cmd
+set PYTHONPATH=src
+python -m pipeline.run_demo --start-date 2019-01-01 --end-date 2024-12-31 --num-factors 400 --universe-name CP_RATE_CORP
+```
+
+3. Start Dash UI
+```cmd
+set PYTHONPATH=src
+python -m ui.app --results-path data/processed/dq_results --raw-path data/raw/timeseries_raw --membership-path data/processed/universe_membership
+```
+
+4. Open browser
+```text
+http://127.0.0.1:8050
+```
+
+If you open a new `cmd` window, reactivate venv and re-run `set PYTHONPATH=src`.
+
+
+#########new version
+Yes. I added both:
+
+- `requirements.txt` (for `pip install -r requirements.txt`)
+- CLI entry points in `pyproject.toml`: `dq-demo` and `dq-ui` (so no `set PYTHONPATH=src`)
+
+Use in **Command Prompt (cmd.exe)**:
+
+```cmd
+python -m venv .venv
+.venv\Scripts\activate.bat
+pip install -r requirements.txt
+```
+
+Run pipeline:
+
+```cmd
+dq-demo --start-date 2019-01-01 --end-date 2024-12-31 --num-factors 400 --universe-name CP_RATE_CORP
+```
+
+Run Dash UI:
+
+```cmd
+dq-ui --results-path data/processed/dq_results --raw-path data/raw/timeseries_raw --membership-path data/processed/universe_membership
+```
+
+Open:
+
+```text
+http://127.0.0.1:8050
+```
+
+Updated files:
+- `requirements.txt`
+- `pyproject.toml`
+- `README.md`
+
