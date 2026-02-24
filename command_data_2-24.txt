@@ -34,4 +34,89 @@ python -m ui.app_v2 \
 
 
 run_demo_integrate_with_Mar.py
+
 validate_integration_withMar.ipynb
+
+
+python -m pipeline.run_demo_integrate_with_Mar ^
+  --source-path data\incoming\manual_dataset.xlsx ^
+  --source-sheet 0 ^
+  --raw-path data\raw_manual ^
+  --processed-path data\processed_manual ^
+  --config-path configs\model_catalog.yaml ^
+  --universe-name CP_RATE_CORP ^
+  --business-date 2026-01-31 ^
+  --clean-target ^
+  --run-engine
+
+
+Yes, good catch. Current `run_demo_integrate_with_Mar.py` stages **all asset classes** into raw tables, but `--run-engine` executes only one universe (`--universe-name`).
+
+Best enhancement path:
+
+1. Add `--run-all-compatible-universes`
+- Auto-detect compatible universes from `configs/model_catalog.yaml` using `rf_level1` in your staged metadata.
+- Run engine once per universe.
+- Write one combined run summary.
+
+2. Add `--universe-names` (multi-value)
+- Example: `--universe-names CP_RATE_CORP FX_VOL_G10 IR_RATE_USD`
+- More control than one `--universe-name`.
+
+3. Keep current behavior as default
+- If neither flag is provided, run single universe as today.
+
+Without code change, current workaround:
+1. Run integration script with staging only (`--no-run-engine`).
+2. Run `run_demo_layer5_runEngine` in a loop for multiple universes.
+
+If you want, I can implement `--run-all-compatible-universes` and `--universe-names` now.
+
+
+
+Implemented.
+
+Updated `src/pipeline/run_demo_integrate_with_Mar.py` to support multi-universe engine runs:
+
+- Added `--universe-names` (explicit list)
+- Added `--run-all-compatible-universes` (auto-run based on staged `rf_level1` vs config universes)
+- Kept backward compatibility with single `--universe-name`
+- Added per-universe success/failure tracking in `run_summary.json` (does not stop whole run if one universe fails)
+
+How to use:
+
+1. Run all compatible universes:
+```bash
+python -m pipeline.run_demo_integrate_with_Mar ^
+  --source-path data\incoming\manual_dataset.xlsx ^
+  --raw-path data\raw_manual ^
+  --processed-path data\processed_manual ^
+  --config-path configs\model_catalog.yaml ^
+  --business-date 2026-01-31 ^
+  --run-engine ^
+  --run-all-compatible-universes
+```
+
+2. Run specific universe list:
+```bash
+python -m pipeline.run_demo_integrate_with_Mar ^
+  --source-path data\incoming\manual_dataset.xlsx ^
+  --raw-path data\raw_manual ^
+  --processed-path data\processed_manual ^
+  --config-path configs\model_catalog.yaml ^
+  --business-date 2026-01-31 ^
+  --run-engine ^
+  --universe-names CP_RATE_CORP FX_VOL_G10 IR_RATE_USD
+```
+
+3. Old single-universe mode still works:
+```bash
+python -m pipeline.run_demo_integrate_with_Mar ^
+  --source-path data\incoming\manual_dataset.xlsx ^
+  --run-engine ^
+  --universe-name CP_RATE_CORP
+```
+
+Validation done:
+- `python -m py_compile src/pipeline/run_demo_integrate_with_Mar.py`
+- `python -m pipeline.run_demo_integrate_with_Mar --help`
