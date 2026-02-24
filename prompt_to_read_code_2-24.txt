@@ -1,0 +1,60 @@
+Use this as your “rehydration” prompt in a new session:
+
+```text
+You are continuing work on my repo: DQ_CheckOpenAI.
+
+Important:
+- Do NOT change code yet.
+- First reconstruct full context from repo files, then summarize what you learned.
+
+Please do this in order:
+
+1) Read and follow AGENTS.md instructions.
+2) Read core docs and architecture context:
+   - README.md
+   - docs/1_DataLayer.MD
+   - docs/2_Universe_Layer.MD
+   - docs/3_DQ_MODEL_LAYER.MD
+   - docs/4_CONFIG_LAYER.md (or numbered equivalent if present)
+   - docs/5_RUN_ENGINE_LAYER.md (or numbered equivalent if present)
+   - docs/6_FALSE_ALARM_LAYER.md (or numbered equivalent if present)
+   - docs/*Dash/UI related doc*
+3) Read key runtime modules:
+   - src/data_access/base.py
+   - src/data_access/parquet_repository.py
+   - src/common/schemas.py
+   - src/engine/run_engine.py
+   - src/ui/app.py
+   - src/ui/app_v2.py
+4) Read key pipeline/demo entrypoints:
+   - src/pipeline/run_demo.py
+   - src/pipeline/run_demo_data_layer.py
+   - src/pipeline/run_demo_layer2_universe.py
+   - src/pipeline/run_demo_layer3_dqChecks.py
+   - src/pipeline/run_demo_layer4_config.py
+   - src/pipeline/run_demo_layer5_runEngine.py
+   - src/pipeline/run_demo_layer6_false_alarm.py
+   - src/pipeline/run_demo_layer7_dash_ui.py
+   - src/pipeline/run_demo_ui_full_dataset.py
+   - src/pipeline/run_demo_integrate_with_Mar.py
+5) Read integration validation artifacts:
+   - tests/validate_integration_withMar.ipynb
+   - tests/data_layer_demo.ipynb
+6) Check current dependencies and scripts:
+   - pyproject.toml
+   - requirements.txt
+
+Then provide:
+A) A concise “project memory” summary of architecture and flow.
+B) A list of major enhancements already implemented (especially business_date-driven processing, app_v2 behavior, and manual dataset integration path).
+C) Current run commands I should use for:
+   - layer5 engine
+   - app_v2 with --business-date
+   - MAR integration demo script
+D) Any open risks/gaps you detect.
+E) Ask me what to do next.
+
+Again: do not modify files in this first step.
+```
+
+Note: I don’t retain memory across sessions, but this prompt will force a full context rebuild from your codebase.
