@@ -1,0 +1,37 @@
+dq-demo-ui-full --max-factors-per-asset-class 100 --start-date 2025-01-01 --end-date 2026-01-31 --business-date 2026-01-31
+
+python -m ui.app_v2 --results-path data/demo_ui_full/processed/dq_results --raw-path data/demo_ui_full/raw/timeseries_raw --membership-path data/demo_ui_full/processed/universe_membership --config-path data/demo_ui_full/processed/ui_full_demo/model_catalog_ui_full.yaml --port 8060
+
+
+python -m ui.app_v2 \
+  --results-path data/demo_ui_full/processed/dq_results \
+  --raw-path data/demo_ui_full/raw/timeseries_raw \
+  --membership-path data/demo_ui_full/processed/universe_membership \
+  --business-date 2026-01-31 \
+  --port 8060
+
+
+
+
+python -m pipeline.run_demo_layer5_runEngine \
+  --no-generate-demo-data \
+  --raw-path data/raw_manual \
+  --processed-path data/processed_manual \
+  --config-path configs/model_catalog.yaml \
+  --universe-name CP_RATE_CORP \
+  --start-date 2007-01-01 \
+  --end-date 2026-01-31 \
+  --business-date 2026-01-31
+
+
+python -m ui.app_v2 \
+  --results-path data/processed_manual/dq_results \
+  --raw-path data/raw_manual/timeseries_raw \
+  --membership-path data/processed_manual/universe_membership \
+  --config-path configs/model_catalog.yaml \
+  --business-date 2026-01-31 \
+  --port 8060
+
+
+run_demo_integrate_with_Mar.py
+validate_integration_withMar.ipynb
