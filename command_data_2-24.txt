@@ -2,17 +2,22 @@ dq-demo-ui-full --max-factors-per-asset-class 100 --start-date 2025-01-01 --end-
 
 python -m ui.app_v2 --results-path data/demo_ui_full/processed/dq_results --raw-path data/demo_ui_full/raw/timeseries_raw --membership-path data/demo_ui_full/processed/universe_membership --config-path data/demo_ui_full/processed/ui_full_demo/model_catalog_ui_full.yaml --port 8060
 
+
+debugging empty Compare tab
 python -c "import pandas as pd; d=pd.read_parquet(r'data\\demo_ui_full\\processed\\dq_results'); print('rows',len(d),'flags',int(d['flag'].sum())); print('date',d['date'].min(),'->',d['date'].max()); print('universes',d['universe_name'].nunique()); print('business_dates',d['business_date'].nunique() if 'business_date' in d.columns else 'NA')"
 
 python -m pipeline.run_demo_layer7_dash_ui --app-version v2 --results-path data/demo_ui_full/processed/dq_results --raw-path data/demo_ui_full/raw/timeseries_raw --membership-path data/demo_ui_full/processed/universe_membership --run-callback refresh_compare --sample-args --no-print-layout-tree --no-print-callbacks --no-validate-callback-ids
 
+python -c "import ui.app_v2 as a; print(a.__file__)"
 
-python -m ui.app_v2 \
-  --results-path data/demo_ui_full/processed/dq_results \
-  --raw-path data/demo_ui_full/raw/timeseries_raw \
-  --membership-path data/demo_ui_full/processed/universe_membership \
-  --business-date 2026-01-31 \
-  --port 8060
+python -c "import os,sys; print(os.getcwd()); print(sys.executable)"
+
+python -c "from ui.app import load_data; d=load_data(r'data/demo_ui_full/processed/dq_results', r'data/demo_ui_full/raw/timeseries_raw', r'data/demo_ui_full/processed/universe_membership', business_date='2026-01-31'); q=d['dq_results']; print('shape',q.shape); print('cols',list(q.columns))"
+
+
+python -m ui.app_v2 --results-path data/demo_ui_full/processed/dq_results --raw-path data/demo_ui_full/raw/timeseries_raw --membership-path data/demo_ui_full/processed/universe_membership --config-path data/demo_ui_full/processed/ui_full_demo/model_catalog_ui_full.yaml --business-date 2026-01-30 --port 8060
+
+
 
 
 
@@ -124,5 +129,6 @@ python -m pipeline.run_demo_integrate_with_Mar ^
 Validation done:
 - `python -m py_compile src/pipeline/run_demo_integrate_with_Mar.py`
 - `python -m pipeline.run_demo_integrate_with_Mar --help`
+
 
 
