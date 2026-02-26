@@ -4,6 +4,10 @@ python -m ui.app_v2 --results-path data/demo_ui_full/processed/dq_results --raw-
 
 
 debugging empty Compare tab
+python -m pip install -e .
+python -m ui.app_v2 --help
+
+
 python -c "import pandas as pd; d=pd.read_parquet(r'data\\demo_ui_full\\processed\\dq_results'); print('rows',len(d),'flags',int(d['flag'].sum())); print('date',d['date'].min(),'->',d['date'].max()); print('universes',d['universe_name'].nunique()); print('business_dates',d['business_date'].nunique() if 'business_date' in d.columns else 'NA')"
 
 python -m pipeline.run_demo_layer7_dash_ui --app-version v2 --results-path data/demo_ui_full/processed/dq_results --raw-path data/demo_ui_full/raw/timeseries_raw --membership-path data/demo_ui_full/processed/universe_membership --run-callback refresh_compare --sample-args --no-print-layout-tree --no-print-callbacks --no-validate-callback-ids
@@ -129,6 +133,7 @@ python -m pipeline.run_demo_integrate_with_Mar ^
 Validation done:
 - `python -m py_compile src/pipeline/run_demo_integrate_with_Mar.py`
 - `python -m pipeline.run_demo_integrate_with_Mar --help`
+
 
 
 
