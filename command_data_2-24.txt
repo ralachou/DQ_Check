@@ -19,6 +19,27 @@ python -c "import os,sys; print(os.getcwd()); print(sys.executable)"
 python -c "from ui.app import load_data; d=load_data(r'data/demo_ui_full/processed/dq_results', r'data/demo_ui_full/raw/timeseries_raw', r'data/demo_ui_full/processed/universe_membership', business_date='2026-01-31'); q=d['dq_results']; print('shape',q.shape); print('cols',list(q.columns))"
 
 
+######### ste[ 2 of debugging 
+but on step 4, i got a warning 
+app_v2 line 1133, in refresh compare 
+            base = f[f["check_id"].astype(str).isin([a, b])].groupby(["risk_factor_id", "date_norm", "check_id"], as_index=False).agg(score=("norm_score", "max"), flag=("flag", "max"))
+(error, length of values 12949 does not match length of index 910000)
+
+---? 
+set PYTHONPATH=C:\Users\Owner\Desktop\OneDrive\Python\AI\DQ_CheckOpenAI\src
+
+python -c "import ui.app_v2 as a, pandas as pd, dash, dash_ag_grid, plotly; print(a.__file__); print('pandas',pd.__version__,'dash',dash.__version__,'dag',dash_ag_grid.__version__,'plotly',plotly.__version__)"
+
+python -c "from ui.app import load_data; import pandas as pd; d=load_data(r'data/demo_ui_full/processed/dq_results', r'data/demo_ui_full/raw/timeseries_raw', r'data/demo_ui_full/processed/universe_membership', business_date='2026-01-31'); q=d['dq_results'].copy(); q['date_norm']=pd.to_datetime(q['date'], errors='coerce').dt.normalize(); print('rows',len(q),'rf_nunique',q['risk_factor_id'].nunique(),'check_nunique',q['check_id'].nunique()); print('dup_cols',q.columns[q.columns.duplicated()].tolist()); models=q['check_id'].dropna().astype(str).unique().tolist()[:2]; a,b=models[0],models[1]; f=q[q['check_id'].astype(str).isin([a,b])].copy(); f['flag']=f['flag'].astype(bool); base=f.groupby(['risk_factor_id','date_norm','check_id'], as_index=False).agg(score=('norm_score','max'), flag=('flag','max')); print('base',base.shape)"
+
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m pip install -e .
+
+
+
+
+
 python -m ui.app_v2 --results-path data/demo_ui_full/processed/dq_results --raw-path data/demo_ui_full/raw/timeseries_raw --membership-path data/demo_ui_full/processed/universe_membership --config-path data/demo_ui_full/processed/ui_full_demo/model_catalog_ui_full.yaml --business-date 2026-01-30 --port 8060
 
 
@@ -133,6 +154,7 @@ python -m pipeline.run_demo_integrate_with_Mar ^
 Validation done:
 - `python -m py_compile src/pipeline/run_demo_integrate_with_Mar.py`
 - `python -m pipeline.run_demo_integrate_with_Mar --help`
+
 
 
 
