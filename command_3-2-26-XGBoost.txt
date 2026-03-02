@@ -1,0 +1,15 @@
+pip install xgboost
+
+Run Layer 6 demo forcing XGBoost + sigmoid calibration:
+
+python -m pipeline.run_demo_layer6_false_alarm --universe-name CP_RATE_CORP --start-date 2024-01-01 --end-date 2024-12-31 --business-date 2024-12-31 --with-supervised --generate-demo-labels --label-rate 0.2 --supervised-candidates xgboost --calibration-method sigmoid --output-format parquet
+
+
+Added calibrated probability support via CalibratedClassifierCV (sigmoid/isotonic)
+   New reducer option: calibration_method
+
+  Triage audit now records calibration metadata and selected supervised model
+     run_demo_layer6_false_alarm.py
+     New CLI arg: --supervised-candidates (comma list; lets you force xgboost)
+     New CLI arg: --calibration-method (sigmoid|isotonic|none)
+ Manifest now records selected candidates + calibration mode
