@@ -27,3 +27,64 @@ python -m ui.app_v2 ^
   --port 8061
 ```
 
+Correct. Layer 6 does produce DQ results, but there are **two different outputs**:
+
+1. Canonical engine table: `data/processed/dq_results/...`
+- Written by `RunEngine`.
+
+2. Layer 6 demo artifacts: `data/processed/layer6_false_alarm_demo/.../triaged_preview.parquet`, etc.
+- Written by `run_demo_layer6_false_alarm.py`.
+
+So when I said “without full `dq_results`”, I meant:
+- you may have only the demo artifact files from Layer 6 script,
+- not the full canonical `data/processed/dq_results` dataset used by normal app flows.
+
+Both contain results; they are just different storage layouts and scope.
+
+
+
+
+No. For **canonical results** you should run **RunEngine (Layer 5 / full pipeline)**, not Layer 3 demo.
+
+- Layer 3 demo writes demo artifacts under `data/processed/layer3_dq_checks_demo/...`
+- Canonical table is `data/processed/dq_results/...` and is written by `RunEngine`
+
+Use:
+```bash
+python -m pipeline.run_demo_layer5_runEngine --no-generate-demo-data --raw-path data/raw --processed-path data/processed --universe-name <YOUR_UNIVERSE> --business-date 2024-12-31 --output-format parquet
+```
+
+or:
+```bash
+dq-demo-layer5-runengine --no-generate-demo-data --raw-path data/raw --processed-path data/processed --universe-name <YOUR_UNIVERSE> --business-date 2024-12-31 --output-format parquet
+```
+
+If you also want canonical Layer 6 supervised fields in `dq_results`, run via `RunEngine` with `with_supervised_triage=True` (programmatic `RunRequest`) since the Layer 5 demo CLI doesn’t expose that flag yet.
+
+
+
+**Canonical results** vs **demo artifacts**:
+
+1. Purpose
+- Canonical: production-style persistent datasets for downstream consumers.
+- Demo artifacts: convenience snapshots/previews for walkthrough/debug.
+
+2. Location
+- Canonical: `data/processed/dq_results`, `audit_log`, `universe_membership`, etc.
+- Demo artifacts: `data/processed/layer*_..._demo/...` (for example `layer6_false_alarm_demo/...`).
+
+3. Schema/coverage
+- Canonical: full run output schema, partitioned tables, all rows for the run scope.
+- Demo artifacts: selected outputs (preview tables, summaries, manifests), often row-limited (`head(...)`).
+
+4. Pipeline owner
+- Canonical: written by `RunEngine`.
+- Demo artifacts: written by `run_demo_*` scripts.
+
+5. Stability
+- Canonical: intended as the standard source for UI/analytics/audit.
+- Demo artifacts: intended for testing/explaining; structure can vary by demo script.
+
+6. UI usage
+- Preferred: point UI to canonical `data/processed/dq_results`.
+- Demo-only mode: point UI to specific demo files when canonical tables are not built.
