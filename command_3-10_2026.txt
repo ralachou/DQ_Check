@@ -88,3 +88,24 @@ If you also want canonical Layer 6 supervised fields in `dq_results`, run via `R
 6. UI usage
 - Preferred: point UI to canonical `data/processed/dq_results`.
 - Demo-only mode: point UI to specific demo files when canonical tables are not built.
+
+
+if root.is_file():
+43
+        try:
+44
+            part = pd.read_parquet(root)
+45
+        except Exception:
+46
+            return pd.DataFrame()
+47
+        if business_dates and "business_date" in part.columns:
+48
+            keep = set(business_dates)
+49
+            part = part[pd.to_datetime(part["business_date"], errors="coerce").dt.strftime("%Y-%m-%d").isin(keep)]
+50
+        return part
+51
+    filters = None
