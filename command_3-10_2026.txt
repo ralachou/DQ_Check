@@ -1,0 +1,29 @@
+
+
+```bash
+python -m ui.app_v2 ^
+  --results-path data/processed/dq_results ^
+  --raw-path data/raw/timeseries_raw ^
+  --membership-path data/processed/universe_membership ^
+  --config-path configs/model_catalog.yaml ^
+  --business-date 2024-12-31 ^
+  --port 8061
+```
+
+If you want to open directly from a **Layer 6 demo run** (without full `dq_results` table), use:
+
+```bash
+python -m ui.app_v2 ^
+  --results-path data/processed/layer6_false_alarm_demo/business_date=2024-12-31/universe_name=CP_RATE_CORP/run_id=<RUN_ID>/triaged_preview.parquet ^
+  --raw-path data/raw/timeseries_raw ^
+  --membership-path data/raw/risk_factors/part-000.parquet ^
+  --config-path configs/model_catalog.yaml ^
+  --business-date 2024-12-31 ^
+  --triage-model-path data/processed/layer6_false_alarm_demo/business_date=2024-12-31/universe_name=CP_RATE_CORP/run_id=<RUN_ID>/triage_model.parquet ^
+  --feature-importance-global-path data/processed/layer6_false_alarm_demo/business_date=2024-12-31/universe_name=CP_RATE_CORP/run_id=<RUN_ID>/feature_importance_global.parquet ^
+  --feature-importance-local-path data/processed/layer6_false_alarm_demo/business_date=2024-12-31/universe_name=CP_RATE_CORP/run_id=<RUN_ID>/feature_importance_local.parquet ^
+  --feature-importance-drift-path data/processed/layer6_false_alarm_demo/business_date=2024-12-31/universe_name=CP_RATE_CORP/run_id=<RUN_ID>/feature_importance_drift.parquet ^
+  --feature-importance-drift-components-path data/processed/layer6_false_alarm_demo/business_date=2024-12-31/universe_name=CP_RATE_CORP/run_id=<RUN_ID>/feature_importance_drift_components.parquet ^
+  --port 8061
+```
+
