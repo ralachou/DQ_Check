@@ -1,0 +1,60 @@
+Subject: DQ Check Enhancement Approach and Meeting Timing
+
+Hi Team,
+
+As discussed last Tuesday, here is the concise approach we are aligning on for scalable DQ enhancement:
+
+- We will organize DQ into multiple model families, with each family containing specific `check_id`s.
+- These checks will detect outliers and produce scores.
+- Scores will then be normalized across checks/families.
+- The normalized scores will be used as ML features to train a model that predicts probability of bad outliers.
+
+Current state:
+- We are running 16 checks across all assets.
+- These checks are not yet fully calibrated by asset class/universe.
+
+Target state:
+- Define the right check set per `asset_class`/universe.
+- Improve score quality first, since ML feature quality depends on robust, well-calibrated scoring.
+
+Also, for proper budget/effort allocation, a second ML track is important:
+- Use ML to predict/estimate shifts for structured sets with shared characteristics (for example, curves with hundreds of tenors, ~400).
+- This can be especially valuable for `COMM` and `IR_VOL`.
+
+Given this, I suggest we postpone the meeting to next week when I am back, so we can combine both approaches and focus jointly on selecting the proper checks for each asset set.
+
+Best,  
+[Your Name]
+
+
+Implemented DQ families (current framework):
+
+1. `STATISTICAL_BASIC`
+- `mean_std_shift_4sigma`, `rolling_zscore`, `zscore_mean_std`
+
+2. `STATISTICAL_ROBUST`
+- `robust_zscore`, `robust_zscore_mean_std`, `quantile_band`, `iqr`, `jump_spike`, `cusum_drift`, `rolling_ks`
+
+3. `RULE_BASED`
+- `stale_values`, `missing_gaps`, `rule_abs_shift_gt`
+
+4. `ML_UNSUPERVISED` (feature-based, mostly PyOD/sklearn adapters)
+- `pyod_iforest`, `pyod_lof`, `pyod_ecod`, `pyod_hbos`, `pyod_knn`, `pyod_copod`, `pyod_pca`, etc.
+
+5. `ML_FORECAST_BASED` (time-series native)
+- `arima_residual`, plus `adtk_*` and `merlion_*` adapters (with safe fallbacks)
+
+6. `PEER_CROSS_GROUP`
+- `peer_median_dev`, `peer_mad`, `peer_robust_z`, `peer_percentile`
+
+7. `ENSEMBLE`
+- `ensemble` with `max_score`, `weighted_avg`, `rank_aggregation`, `majority_vote`
+
+How it flows:
+- Each `check_id` outputs raw anomaly score + flag/severity.
+- Scores are normalized across checks.
+- Normalized scores become ML features for false-alarm / bad-outlier probability modeling.
+
+Current operating mode:
+- We are still running a broad set (16 checks) across all assets.
+- Next calibration step is check-set tuning by `asset_class` / universe.
