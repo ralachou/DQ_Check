@@ -1,0 +1,26 @@
+All right, here’s a concise five-minute pitch you can use:
+
+“Thank you all for joining. I want to provide a high-level update on the S&P data migration. 
+Right now, we are in the gathering requirements phase. 
+Our goal is to gain clarity on the route: whether we align this work with EM, MA , Bas 2.5, FRTB, SA, or IMA. 
+
+Engaging both IT and the MC team, we’ve received feedback that this should be a minimal lift in MA—primarily a mapping exercise. 
+Based on stakeholder input, we anticipate implementation between Q2 and Q3, combining both RRR and MA efforts. 
+After that, we plan a one-month backtesting period on the VAR impact (90 days), followed by a two-month SIMUL validation.
+ Once complete, we will notify regulators. 
+Throughout this, we’ll keep you all in the loop. 
+
+
+The big shift is that this year, MCRM product owners have the authority to prioritize work, with IT assessing the effort. 
+The business now wants to ensure this is top-of-the-house priority. 
+And, with Brandon, Mark, and Ahmed’s support, we have a strong foundation.
+ So, we’ll continue to align, finalize mapping, and keep everyone informed as we go.”
+
+
+The idea is that once we finalize the mapping and integration in MARS, we’ll have a clear, consistent foundation. 
+Then, for EMR and MDSOR, they’ll adopt that same structure in Q3. 
+This will minimize rework and ensure we’re fully aligned across all platforms.
+
+We need to finalize those mapping details so that we eliminate ambiguity—ensuring that every sector and region is consistently 
+defined across VAR, CCAR, and stress testing. 
+Once we lock down that consistency
