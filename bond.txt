@@ -1,0 +1,11 @@
+The front office and risk models can look at the same instrument  and come up with different P&L directions.
+For example: a current corporate bond front office model doesn't actually model whether a company is getting riskier. 
+At best, it relies on the actual bond price and works backwards to figure out what it implies about that company's risk. ( implied spread) 
+
+The risk model works differently :  it skips individual prices entirely and credit sprad and instead groups companies into broad rating buckets
+assuming all names in the same bucket move together and carry the same risk. 
+
+But when something company-specific happens — like SVB collapsing and regional banks getting stressed,SVB and JP Morgan would get  treated as if they carry the same risk.
+ When one name blows up and the rest are fine, the risk model can't tell the difference. and the front office model would catches it only  through the price. 
+
+This isn't just a one-off issue with banks. It applies to any product where we rely on market price to impply a spread — risky bonds, bond futures, listed futures.
