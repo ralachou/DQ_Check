@@ -9,3 +9,11 @@ But when something company-specific happens — like SVB collapsing and regional
  When one name blows up and the rest are fine, the risk model can't tell the difference. and the front office model would catches it only  through the price. 
 
 This isn't just a one-off issue with banks. It applies to any product where we rely on market price to impply a spread — risky bonds, bond futures, listed futures.
+
+
+
+FO and Risk can look at the same instrument and produce different P&L.
+
+FO uses the actual market price to infer risk, while Risk may ignore individual prices and use broad rating buckets, assuming names in the same bucket move the same way.
+
+So in an SVB-style event, FO captures the stress through price, but Risk may treat SVB and JP Morgan similarly if they sit in the same bucket.
