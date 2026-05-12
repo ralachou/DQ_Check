@@ -1,0 +1,67 @@
+Subject: RFET Workstream — Summary of Today’s Walkthrough
+
+Team,
+
+Thank you for today's session. Here is a precise summary of the RFET workstream.
+
+
+WHAT RFET DOES
+
+Every risk factor must be classified as Modellable or Non-Modellable. Modellable goes into IMCC (capital-efficient). Non-Modellable goes into SES (punitive). The difference is hundreds of millions in capital. RFET is the test that makes that call. It has two parts.
+
+
+PART 1 — QUANTITATIVE TEST
+
+This is purely about observation count. For each risk factor, we ask: how many real price observations (RPOs) exist in the last 12 months?
+
+• Short-horizon risk factors need ≥24 observations to pass
+• Longer-horizon risk factors need ≥16 observations to pass
+
+If the count meets the threshold, the risk factor is modellable. If not, it's non-modellable.
+
+But before we can count anything, there is significant prework:
+
+• Source RPOs — buy real price data from multiple vendors (exchanges, TRACE, DTCC, Markit, Bloomberg, ICE), negotiate contracts, onboard the feeds
+• Map RPOs to risk factors — vendor data uses trade identifiers (CUSIPs, ISINs). Our risk factors use an internal taxonomy. There is no universal key connecting the two. Building that translation layer is the hardest engineering problem in the programme. If the mapping is wrong, the classification is wrong, and the capital number is wrong.
+• Define buckets — decide how to group risk factors for counting. Broader buckets make it easier to pass. Narrower buckets are safer with regulators. This is a capital decision, not a technical one.
+
+
+PART 2 — QUALITATIVE TEST
+
+This tests whether the data behind each risk factor is reliable and defensible. There are six standards:
+
+1. Real price backing — is the risk factor based on actual market prices, not model-generated values?
+2. Update frequency — is the data refreshed frequently enough to capture market moves?
+3. Source reliability — is the data source reputable and consistent?
+4. Volatility and correlation capture — does the data correctly reflect how this risk factor moves and how it moves relative to others?
+5. Model-derived data flagging — if the risk factor is derived from a model rather than directly observed, is that documented and justified?
+6. Proxy justification — if we're using a proxy instead of direct data, is the proxy relationship documented, validated, and defensible under stress?
+
+The qualitative test is not black or white. There is judgement involved. But it is the most important test in terms of what it reveals — because it forces us to confront whether our proxies actually hold, whether our derivation methods are defensible, and whether the way we generate risk factors (vol surfaces, FX basis, spread-based factors) meets the standard regulators expect. Every weakness the qualitative test exposes creates additional work.
+
+A risk factor must pass BOTH the quantitative and qualitative test to be classified as Modellable.
+
+
+SEVEN THINGS THAT CAN TURN THIS RED
+
+1. RPO-to-RF Mapping — if the translation is wrong, the count is wrong, the classification is wrong, and the capital is wrong
+2. Bucketing — a policy choice that regulators will challenge; getting it wrong means rebuilding
+3. Qualitative cascades — the six tests will expose proxy, derivation, and methodology gaps that generate unplanned scope
+4. Derivation defensibility — vol parameterisation, FX basis, 2008 proxy assumptions under stress
+5. NMRF migration paths — no process to move risk factors from punitive to efficient bucket
+6. Systematic vs. idiosyncratic risk gaps — are we capturing both, or is there uncovered residual risk?
+7. Tech capacity — all of this must be built and running daily in production across two Tech tracks
+
+
+KEY DECISIONS NEEDED
+
+• Where does RPO data live? (storage architecture)
+• Own bucketing or prescribed? (capital vs. regulatory risk trade-off)
+• What can Tech realistically deliver within the timeline?
+
+
+NEXT STEPS
+
+We will share the detailed plan with milestone sequencing and dependency mapping. Goal is to align on scope, resourcing, and timeline.
+
+Best regards
