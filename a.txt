@@ -36,3 +36,11 @@ KEY DECISIONS NEEDED
 NEXT STEPS
 
 We will share the detailed plan with milestone sequencing and dependency mapping. Goal is to align on scope, resourcing, and timeline.
+
+directly impacting:
+
+Capital aggregation
+ES calculations
+SES charges
+NMRF capital impact
+Final IMA capital number
