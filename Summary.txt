@@ -1,0 +1,50 @@
+**RFET Deep Dive — Session 1 Recap**
+*Real Price Observations Under FRTB IMA*
+
+---
+
+**RFET exists because Basel requires every risk factor to be classified as modellable or non-modellable.**
+The classification drives capital. Modellable risk factors go into the Expected Shortfall model. Non-modellable ones get a separate, heavier capital charge. RFET is the quarterly test that determines which bucket a risk factor falls into.
+
+**RFET is not one test — it is two.**
+A qualitative test asks whether the risk factor is suitable, trustworthy, representative of the actual risk, and defensible. A quantitative test asks whether there are enough Real Price Observations to prove the risk factor is actively priced in the market. Both must pass independently.
+
+**Not every price is an RPO.**
+Only executed trades, firm and committed quotes, and verifiable vendor prices qualify. Indicative quotes, desk marks, and generic screen feeds do not. The price must be traceable to an actual market event — not an internal estimate.
+
+**Passing the RPO count does not mean the risk factor is modellable.**
+A risk factor can have plenty of RPOs and still fail RFET on the qualitative side. When that happens, it becomes NMRF Type B. The usual causes are weak proxies, flawed risk factor derivation, or failure to capture the proper underlying risk.
+
+**Different risk factor categories face different levels of RPO complexity.**
+Curves and single-dimension factors map cleanly — IR swaps, equity spots, cash positions are straightforward. Composed risk factors like XCCY basis require either decomposition into components or selecting the most representative RPO. Parametric risk factors like SABR parameters require RFET to be run on the calibration inputs, not the parameters themselves.
+
+**The mapping chain is where the real operational work lives.**
+RPO → instrument attributes → underlying risk factor + representativeness decision → RFET count. One transaction can serve as an RPO for multiple risk factors, but each mapping must be individually justified.
+
+---
+
+**Desk-Style Q&A**
+
+**We source rates from Bloomberg every day. Doesn't that give us RPOs?**
+No. A generic Bloomberg feed is not an RPO unless each price is linked to a specific executed trade, firm quote, or verifiable transaction. "We get prices from Bloomberg" is not evidence — the observation itself must be traceable.
+
+**Our desk marks the book daily. Can those count?**
+No. Desk marks are internal valuations. They reflect the bank's own estimate, not an observed market event. RFET requires external evidence of real market pricing.
+
+**If I have 30 RPOs for a risk factor, am I good?**
+Not necessarily. You pass the quantitative test, but the qualitative test can still fail. If the RPOs are poorly mapped, based on weak proxies, or don't represent the actual risk being modeled, the risk factor becomes NMRF Type B regardless of the count.
+
+**A broker told me the 5Y EUR/USD basis swap is around 14 bps. Is that an RPO?**
+Not if it is indicative. "I think it's around 14 bps but I'm not obligated to trade there" is not a firm quote. The broker must be committed to dealing at that level for it to qualify.
+
+**We trade XCCY basis swaps. Is the trade itself enough to prove the basis risk factor?**
+It can be, if you use the most-representative-RPO approach. The alternative is to decompose the XCCY into its components — IR Index 1, IR Index 2, FX Spot, FX Forward, and Basis Risk — and run RFET for each separately. Either approach works, but the choice must be justified and documented.
+
+**Our vol surface uses SABR. Do we run RFET on alpha, rho, and nu?**
+No. RFET is run on the market data used to calibrate those parameters — ATM option quotes, OTM strikes, expiry points, delta/moneyness. Beta, rho, and nu are model outputs, not directly observed prices.
+
+**Can one bond trade count as an RPO for more than one risk factor?**
+Yes. A single bond transaction can count for the credit issuer risk factor, the credit sector risk factor, and an IR curve point — provided each mapping is representative and individually justified.
+
+**What happens if we fail RFET?**
+The risk factor becomes an NMRF. Type A if you failed on count (not enough RPOs). Type B if you failed on quality (enough RPOs but qualitative deficiency). Either way, separate and higher capital treatment applies.
