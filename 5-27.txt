@@ -1,0 +1,33 @@
+Here is a concise version you can send:
+
+Hi David,
+
+Please see the attached PPT and document for an initial view of the RFET/RPO technology scope.
+
+Next week, we plan to walk through the end-to-end PoC/MVP. Please let me know what you would like to see included.
+
+A few key points:
+
+The RPO storage design needs to be finalized. Conceptually, the RPO store will be a smaller version of TDS with IPV-like capabilities. We also need to confirm where the RFET framework will be housed. Per the master plan, this is a KBD decision between you, Ashu, and Eric — either centralized, or split by tech stack: Vasara/EMR/MDSOR and MARS/RFDM.
+
+Once RPO storage is finalized, the RFET framework should classify every in-scope risk factor through the required quantitative and qualitative tests. Since this is regulatory-driven, every RFET component will need to be transparent and reviewable by regulators and internal management.
+
+From a Tech perspective, there are two major workstreams:
+
+1. Build the RFET framework: RPO ingestion, storage, normalization, bucketing, aggregation, mapping, and counting.
+
+2. Support qualitative-test remediation where evidence, controls, or risk-factor design are not sufficient.
+
+The most complex part will likely be the RPO-to-risk-factor mapping. The mapping approach will vary by risk-factor type, including single-dimension RFs, curves, parametric RFs, and composed risk factors.
+
+The qualitative remediation body of work is still TBD and will depend on the desks and products in scope. Potential areas include bonds, listed options, Credit/Muni idiosyncratic risk, CDS risky curves, and potentially FX basis risk.
+
+For the high-level requirements, please refer to:
+
+* Slides 24 and 26 for the overall Tech scope
+* Slide 20 for what counts as RPOs
+* Slide 19 for potential mapping approaches
+
+More details will follow as we progress the PoC/MVP.
+
+
