@@ -1,0 +1,57 @@
+## EY Roundtable — C-Suite Lessons Learned on FRTB IMA
+
+### Executive headline
+
+**IMA is not a model approval exercise. It is a capital operating model.**
+
+### C-suite wisdom points
+
+1. **Capital relief is earned, not assumed.**
+   IMA can reduce capital only if desks pass RFET, PLA, backtesting, and evidence standards.
+
+2. **Getting approved is not the finish line. Staying approved is the real cost.**
+   Daily PLA/backtesting performance, quarterly RFET, and validation evidence create a permanent operating burden.
+
+3. **NMRF can turn IMA into a capital penalty.**
+   A desk can be approved for IMA but still carry high capital if key risk factors fail modellability.
+
+4. **The long pole is not the model. It is data, RFET, infrastructure, tooling, and evidence.**
+   Banks spent the most time on data sourcing, RPO mapping, IT infrastructure, tooling, and repeatable controls.
+
+5. **Early movers used IMA to modernize the bank.**
+   Some banks started years ago and used the program to clean data, modernize infrastructure, increase compute power, and build reusable capital analytics.
+
+6. **Scope decisions made today become capital outcomes tomorrow.**
+   The first buildout will define which desks, products, and risk factors are in scope, out of scope, modellable, or capital-punitive.
+
+7. **Readiness is not only capital impact. It is passability.**
+   A desk should be prioritized only if it has capital benefit, strong PLA/backtesting prospects, clear RFET evidence, and manageable operational complexity.
+
+8. **Desk structure is a capital design choice.**
+   Granularity matters. Some banks adjusted desk structure because PLA, backtesting, and capital outcomes are assessed at desk level.
+
+9. **IMA requires judgment, not perfection.**
+   The best approach is not always the most theoretically pure model. It is the approach that is sufficient, capital-efficient, defensible, and operationally feasible.
+
+10. **If it cannot be rerun, evidenced, and defended, it will not scale.**
+    Regulators and internal validation will expect empirical evidence, repeatable criteria, acceptance thresholds, and clear governance.
+
+### Practical takeaway for leadership
+
+The resource ask should not be framed as “IMA compliance spend.”
+It should be framed as **capital infrastructure investment**.
+
+We need funding for:
+
+* End-to-end SA vs IMA capital impact assessment.
+* Modellable vs NMRF capital simulation.
+* RFET/RPO data ingestion, storage, mapping, bucketing, and counting.
+* PLA and backtesting analytics.
+* Evidence generation and validation workflows.
+* Desk/product/risk-factor scope decision tooling.
+* Sustainable BAU controls to remain eligible after approval.
+
+### Bottom line
+
+**IMA is a strategic capital option, but only if we build the data, tooling, evidence, and operating model to support it
+Otherwise, we may get approval but still carry higher capital through NMRF, PLA amber/red outcomes, backtesting exceptions, or fallback to SA.**
