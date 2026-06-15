@@ -4,3 +4,10 @@ https://www.bis.org/bcbs/publ/d457_note.pdf
 https://www.bis.org/basel_framework/chapter/MAR/21.htm?inforce=20230101&published=20260323#paragraph_MAR_21_20230101_21_89
 
 https://www.bis.org/bcbs/publ/d457_note.pdf
+
+
+https://www.eba.europa.eu/sites/default/files/document_library//EBA-RTS-2020-03%20Final%20draft%20RTS%20on%20Risk%20factor%20modellability.pdf
+2.6 Modellability assessment for parametric curves, surfaces or cubes
+
+https://www.eba.europa.eu/eba-response/9392?destination=/technical-standards-ima-under-frtb
+Q10. Do you have alternative proposals to define the consequence on the modellability of the parameters where some buckets of a curve, surface or cube are modellable whilst others are nonmodellable?
