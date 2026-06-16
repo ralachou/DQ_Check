@@ -11,3 +11,6 @@ https://www.eba.europa.eu/sites/default/files/document_library//EBA-RTS-2020-03%
 
 https://www.eba.europa.eu/eba-response/9392?destination=/technical-standards-ima-under-frtb
 Q10. Do you have alternative proposals to define the consequence on the modellability of the parameters where some buckets of a curve, surface or cube are modellable whilst others are nonmodellable?
+
+
+https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/capital-adequacy-requirements-car-2026-chapter-9-market-risk
