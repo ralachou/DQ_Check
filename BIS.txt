@@ -16,3 +16,7 @@ Q10. Do you have alternative proposals to define the consequence on the modellab
 https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/capital-adequacy-requirements-car-2026-chapter-9-market-risk
 
 https://www.bankofengland.co.uk/-/media/boe/files/prudential-regulation/authorisations/capital-requirements-regulation-permissions/internal-model-approach-ima-application-questionnaire.pdf
+
+
+https://archive.fdic.gov/view/fdic/15443/fdic_15443_DS1.pdf
+https://www.eba.europa.eu/sites/default/files/document_library/EBA-RTS-2020-03%20Final%20draft%20RTS%20on%20Risk%20factor%20modellability.pdf
