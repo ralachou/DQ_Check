@@ -19,8 +19,9 @@ https://www.bankofengland.co.uk/-/media/boe/files/prudential-regulation/authoris
 
 
 https://archive.fdic.gov/view/fdic/15443/fdic_15443_DS1.pdf
-https://www.eba.europa.eu/sites/default/files/document_library/EBA-RTS-2020-03%20Final%20draft%20RTS%20on%20Risk%20factor%20modellability.pdf
 
+## how to compute SES for NMRF
+https://www.eba.europa.eu/sites/default/files/document_library/EBA-RTS-2020-03%20Final%20draft%20RTS%20on%20Risk%20factor%20modellability.pdf
 
 https://www.eba.europa.eu/sites/default/files/document_library/1017256/A%20universal%20stress%20scenario%20approach%20to%20capitalise%20NMRF.pdf
 
