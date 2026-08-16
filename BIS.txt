@@ -39,3 +39,7 @@ https://www.occ.gov/news-issuances/federal-register/2026/91fr14952.pdf?utm_sourc
 
 ### link to  this SUPPLEMENTARY INFORMATION
 https://www.fdic.gov/board/federal-register-notice-npr-community-reinvestment-act.pdf
+
+### other opinino
+https://github.com/amitsharma90-source/FRTB-Internal-model-based-approach/tree/main/MAR31-RFET-bucketing-proxy-NMRF-7-principles
+
